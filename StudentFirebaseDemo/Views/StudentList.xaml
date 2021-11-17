@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentFirebaseDemo.Views.StudentList">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="AddToolBarItem"
+                     Text="Add"
+                     Clicked="AddToolBarItem_Clicked">
+        </ToolbarItem>
+        
+        <ToolbarItem x:Name="EditToolBarItem"
+                     Text="Edit"
+                     Clicked="EditToolBarItem_Clicked">
+        </ToolbarItem>
+        
+        <ToolbarItem x:Name="DeleteToolBarItem"
+                     Text="Delete"
+                     Clicked="DeleteToolBarItem_Clicked">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand">
+            <Label Text="Student List"
+                   FontSize="Large"/>
+
+            <CollectionView x:Name="collectionView"
+                            ItemsSource="{Binding students}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Grid Padding="10" RowDefinitions="Auto, *">
+                                <Label Text="{Binding id}" Grid.Row="0" Grid.Column="0" FontSize="Small"/>
+                                <Label Text="{Binding lastName}"  Grid.Row="0" Grid.Column="1" FontSize="Small"/>
+                                <Label Text="{Binding firstName}" Grid.Row="0" Grid.Column="2" FontSize="Small"/>
+                                <Label Text="{Binding email}" Grid.Row="0" Grid.Column="3" FontSize="Small"/>
+                                <Label Text="{Binding phoneNum}" Grid.Row="0" Grid.Column="4" FontSize="Small"/>
+                                <Image Source="edit.png" Grid.Row="0" Grid.Column="5" HeightRequest="20" WidthRequest="20">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="EditTap" Tapped="EditTap_Tapped" CommandParameter="{Binding Key}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Image Source="delete.png" Grid.Row="0" Grid.Column="6" HeightRequest="20" WidthRequest="20">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer x:Name="DeleteTap" Tapped="EditTap_Tapped" CommandParameter="{Binding Key}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
